@@ -1,0 +1,25 @@
+table {
+    display: table;
+}
+table tr {
+    display: table-cell;
+}
+table tr td {
+    display: block;
+}
+
+.column {
+    border: 2px solid white;
+    position: relative;
+    top: -100%;
+    display: inline-block;
+    left: 0;
+}
+
+.column .row {
+    border-bottom: 2px solid white;
+}
+
+.column .colHeader {
+    border-bottom: 2px solid white;
+}

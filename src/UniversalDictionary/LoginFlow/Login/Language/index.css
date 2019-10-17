@@ -1,0 +1,35 @@
+.language {
+    background-color: white;
+    width: 25%;
+    height: 75%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+
+.language .choice {
+    top: 20%;
+    position: absolute;
+}
+
+.language .flagName {
+    width: 25%;
+    height: 25%;
+}
+
+.language .lang-name {
+    color: #3e3e40;
+}
+.language .drop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.language .button {
+    bottom: 10%;
+    position: absolute;
+    right: 15%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,30 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #5bdd55;
+}
+
+.navbar .children {
+    position: absolute;
+    top: 0;
+}
+
+.navbar img {
+    width: 5%;
+    height: 5%;
+}
+
+.navbar .items {
+    list-style: none;
+}
+
+.navbar .items li {
+    display: inline;
+    padding-right: 15%;
+}
+
+.navbar .items .user {
+
+}
