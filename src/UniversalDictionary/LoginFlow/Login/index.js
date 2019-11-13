@@ -1,11 +1,16 @@
 import React from 'react';
 import Button from '../../../UI/Button'
 import './index.css'
+import avatar from '../../../Consts/avatar.svg'
+import arrow from '../../../Consts/rightarrow.svg'
+import lock from '../../../Consts/lock.svg'
+import book from '../../../Consts/book.svg'
+import Input from "../../../UI/Input";
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {user: { username: "", password: "" }};
+        this.state = {user: {username: "", password: ""}};
         this.handleInputChange = this.handleInputChange.bind(this);
         this.encode = this.encode.bind(this);
     }
@@ -14,40 +19,39 @@ class Login extends React.Component {
         const val = input.value;
         const {user} = this.state;
         user[input.name] = val;
-        this.setState({user: user });
+        this.setState({user: user});
     }
 
     encode(pass) {
         return "*".repeat(pass.length);
     }
 
-    // onClick() {
-    //     const {username, password, users} = this.state;
-    //     users.push({username, password});
-    //     this.setState({popup: true});
-    // }
-
     render() {
         const {user} = this.state;
-        const { onClick } = this.props;
+        const {onClick} = this.props;
         return (
             <div className="Login">
                 <div className="input">
-                    Username:
-                    <input
-                        name="username"
-                        type="text"
-                        value={user.username}
-                        onChange={this.handleInputChange}/>
-                    Password:
-                    <input
-                        name="password"
-                        type="text"
-                        value={this.encode(user.password)}
-                        onChange={this.handleInputChange}/>
-                    <Button text="Login"
-                           disabled={user.username === "" || user.password === ""}
-                           onClick={() => onClick(user)}
+                    <img className="logo" src={book} alt="dict"/>
+                    <div className="user name">
+                        <img src={avatar} alt="user"/>
+                        <Input
+                            name="username"
+                            type="text"
+                            value={user.username}
+                            onChange={this.handleInputChange}/>
+                    </div>
+                    <div className="user password">
+                        <img src={lock} alt="lock"/>
+                        <Input
+                            name="password"
+                            type="text"
+                            value={this.encode(user.password)}
+                            onChange={this.handleInputChange}/>
+                    </div>
+                    <Button image={arrow}
+                            disabled={user.username === "" || user.password === ""}
+                            onClick={() => onClick(user)}
                     />
                 </div>
             </div>

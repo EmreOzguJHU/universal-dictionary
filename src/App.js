@@ -5,9 +5,9 @@ import UniversalDictionary from "./UniversalDictionary";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <body className="App-body">
         <UniversalDictionary/>
-      </header>
+      </body>
     </div>
   );
 }

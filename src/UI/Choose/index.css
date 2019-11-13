@@ -1,0 +1,22 @@
+.choose {
+    position: absolute;
+    width: 100%;
+    display: inline-block;
+}
+
+.choose .chooseimg {
+    width: 100px;
+}
+
+.choose .chooseimg:hover {
+    cursor: pointer;
+    background-color: #928f91;
+    border-radius: 50%;
+}
+
+.choose .dropdown {
+    width: 500%;
+    position: absolute;
+    left: 60%;
+    top: 10%
+}

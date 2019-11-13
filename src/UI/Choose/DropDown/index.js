@@ -2,12 +2,11 @@ import React, {useRef, useEffect, useState} from 'react';
 import './index.css';
 
 const DropDown = (props) => {
-    const { list, title, onChange } = props;
+    const {list, onChange, onClose} = props;
     const window = useRef();
-    const [show, setShow] = useState(false);
     const outsideClick = e => {
         if (!window.current.contains(e.target)) {
-            setShow(false);
+            onClose();
         }
     };
 
@@ -17,31 +16,21 @@ const DropDown = (props) => {
     }, []);
     const items = list.map(l =>
         <li onClick={() => {
-            setShow(false);
+            onClose();
             onChange(l)
         }}>
             <img src={l.flag} alt="flag"/>
-            <div className="lang-name">
-                {l.name}
+            <div className="name">
+                {l.nativeName}
             </div>
         </li>
     );
 
     return (
-        <div ref={window} {...props}>
-            <div className="menu" onClick={() => setShow(!show)}>
-                {title}
-            </div>
-            {show &&
-                <div className="dropdown">
-                    <ul className="choices">{items}</ul>
-                </div>}
+        <div className="dropdown" ref={window}>
+            <ul className="choices">{items}</ul>
         </div>
     )
-};
-
-DropDown.defaultProps = {
-    title: "Choose",
 };
 
 export default DropDown;

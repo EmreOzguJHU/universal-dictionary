@@ -19,7 +19,7 @@ class LoginFlow extends React.Component {
                 const {setUser} = this.context;
                 const {user} = this.state;
                 user.lang = val;
-                setUser(user)
+                setUser(user);
                 localStorage.setItem('user', JSON.stringify(user));
             }}/>
         }

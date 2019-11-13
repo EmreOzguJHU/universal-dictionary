@@ -1,17 +1,27 @@
 import NavBar from "../../UI/NavBar";
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import DictionaryTable from "./DictionaryTable";
+import './index.css'
+import apiConnect from "../../Helpers/apiConnect";
+import {UserContext} from "../../Context/UserContext";
 
-class Home extends React.Component {
-    render() {
-        return (
-            <div className="homepage">
-                <NavBar>
-                    <DictionaryTable/>
-                </NavBar>
-            </div>
-        );
-    }
-}
+const propsToCalls = {
+    languages: 'https://restcountries.eu/rest/v2/all',
+};
 
-export default Home;
+const Home = ({ languages }) => {
+    const [from, setFrom] = useState([]);
+    const {user: { lang} } = useContext(UserContext);
+    return (
+        <div className="homepage">
+            <NavBar choices={languages} from={from} setFrom={setFrom}/>
+            <DictionaryTable languages={languages} from={from} to={lang}/>
+        </div>
+    );
+};
+
+Home.defaultProps = {
+    languages: [],
+};
+
+export default apiConnect(propsToCalls)(Home);

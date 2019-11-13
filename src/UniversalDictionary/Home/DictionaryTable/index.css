@@ -1,5 +1,21 @@
-.table {
+.dictionaryTable {
+    max-height: 90%;
     position: absolute;
-    top: 14%;
-    left:0;
+    top: 10%;
+    left: 0;
+    width: 100vw;
+    display: inline-block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.tableWithScroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    background-color: #ededed;
+}
+
+.pinnedTable {
+    float: left;
+    background-color: #F0FFD1;
 }

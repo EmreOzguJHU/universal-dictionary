@@ -1,7 +1,7 @@
 .language {
-    background-color: white;
-    width: 25%;
-    height: 75%;
+    background-color: #f8ffe4;
+    width: 40%;
+    height: 40%;
     position: fixed;
     transform: translate(-50%, -50%);
     border-radius: 5px;
@@ -28,8 +28,14 @@
 }
 
 .language .button {
-    bottom: 10%;
+    bottom: 8%;
     position: absolute;
-    right: 15%;
+    right: 8%;
     transform: translate(-50%, -50%);
+}
+
+.language .choose {
+    position: absolute;
+    top: 20%;
+    left: -25%;
 }

@@ -1,0 +1,9 @@
+.customInput {
+    display: inline-block;
+    background: #9FF070;
+    border: #928f91 thin solid;
+    border-radius: 10px;
+    width: 300px;
+    height: 25px;
+    padding-left: 10px;
+}

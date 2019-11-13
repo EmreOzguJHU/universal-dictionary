@@ -1,0 +1,22 @@
+.button {
+    border: black 2px solid;
+    width: 75px;
+    border-radius: 10px;
+    background-color: #9FF070;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button.disabled {
+    background-color: #bdcbab;
+}
+
+.button.disabled:hover {
+    cursor: auto;
+}
+
+.button.disabled img {
+    filter: brightness(1000%);
+}

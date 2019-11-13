@@ -2,21 +2,70 @@ import React from 'react';
 import DictionaryColumn from "./DictionaryColumn";
 import './index.css';
 
-const DictionaryTable = (props) => {
-    const { data } = props;
-    const cols = Object.keys(data).map(key => <DictionaryColumn colName={key} data={data[key]}/>);
-    return (
-        <table className="table">
-            {cols}
-        </table>
-    )
+const fakeData = (langs) => {
+    const data = {};
+    langs.forEach((l) => {
+        data[l.nativeName] = [];
+        for (let i = 0; i < 30; i++) {
+            data[l.nativeName].push("word" + i);
+        }
+    });
+    return data;
 };
+
+class DictionaryTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { data: {}};
+        this.toColumn = React.createRef();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ data: fakeData(nextProps.languages)})
+    }
+
+    render() {
+        const { from, to} = this.props;
+        const { data } = this.state;
+        const fromNames = from.map(l => l.nativeName);
+        const fromCols = [];
+        const toCols = [];
+        Object.keys(data).forEach(key => {
+            let col = <DictionaryColumn colName={key} data={data[key]} onDelete={() => {
+                delete data[key];
+                this.setState({ data });
+            }
+            }/>;
+            if (key === to.nativeName) {
+                col = <DictionaryColumn colName={key} setRef={this.toColumn} data={data[key]} />
+            }
+            if (fromNames.includes(key)) {
+                fromCols.push(col);
+            } else {
+                toCols.push(col);
+            }
+        });
+        return (
+            <div className="dictionaryTable">
+                <table className="pinnedTable">
+                    {fromCols}
+                </table>
+                <div className="tableWithScroll">
+                    <table className="table">
+                        {toCols}
+                    </table>
+                </div>
+            </div>
+        )
+    }
+}
 
 DictionaryTable.defaultProps = {
     data: {
         English: ['word1', 'word2', 'word3', 'word4'],
         Turkish: ['word1', 'word2', 'word3', 'word4'],
-    }
+    },
+    languages: []
 };
 
 export default DictionaryTable;

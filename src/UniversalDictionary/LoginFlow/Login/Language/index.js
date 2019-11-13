@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import apiConnect from "../../../../Helpers/apiConnect";
-import DropDown from "../../../../UI/DropDown";
 import './index.css'
 import Button from "../../../../UI/Button";
+import Choose from "../../../../UI/Choose";
+import arrow from "../../../../Consts/rightarrow.svg"
+import flag from "../../../../Consts/flag.svg"
+
 
 const propsToCalls = {
     languages: 'https://restcountries.eu/rest/v2/all',
@@ -20,8 +23,9 @@ const Language = ({languages, onClick}) => {
                     </div>
                 </div>
             }
-            <DropDown className="drop" list={languages} onChange={(l) => setLang(l)}/>
-            <Button className="button" text="Next" disabled={!lang.flag} onClick={() => onClick(lang)}/>
+
+            <Choose list={languages} image={flag} onChange={(l) => setLang(l)}/>
+            <Button className="button" image={arrow} disabled={!lang.flag} onClick={() => onClick(lang)}/>
         </div>
     );
 };

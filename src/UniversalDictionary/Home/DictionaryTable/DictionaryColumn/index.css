@@ -3,23 +3,39 @@ table {
 }
 table tr {
     display: table-cell;
+    color: black;
 }
 table tr td {
     display: block;
 }
 
 .column {
-    border: 2px solid white;
+    min-width: 0.5%;
+    border: 2px solid #000000;
+    border-left: hidden;
+    border-bottom: hidden;
     position: relative;
     top: -100%;
     display: inline-block;
     left: 0;
 }
 
-.column .row {
-    border-bottom: 2px solid white;
+.column .colHeader {
+    border-bottom: 2px solid #000000;
+    font-weight: bold;
 }
 
-.column .colHeader {
-    border-bottom: 2px solid white;
+.column .colHeader img {
+    float: right;
+    position: relative;
+    top: 5px;
+    right: 4px;
+    margin-left: 5px;
+}
+
+.column .colHeader img:hover {
+    background-color: #928f91;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
 }
