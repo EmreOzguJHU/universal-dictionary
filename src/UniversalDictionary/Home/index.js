@@ -11,6 +11,7 @@ const propsToCalls = {
 
 const Home = ({ languages }) => {
     const [from, setFrom] = useState([]);
+    const [search, setSearch] = useState("");
     const {user: { lang} } = useContext(UserContext);
     return (
         <div className="homepage">

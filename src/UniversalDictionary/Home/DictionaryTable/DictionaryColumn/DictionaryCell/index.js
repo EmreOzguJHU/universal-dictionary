@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './index.css';
 
-const DictionaryCell = ({ data }) => {
+const DictionaryCell = ({ data, edit }) => {
+    const [content, setContent] = useState(data);
     return (
         <td className="cell">
-            {data}
+            <input
+                className="word-input"
+                name="data"
+                type="text"
+                value={content}
+                onChange={({ target: input }) => setContent(input.value)}
+                disabled={edit ? "" : "true"}/>
         </td>
     )
 };

@@ -1,4 +1,18 @@
 .cell {
     border-bottom: 2px solid #000000;
-    height: 80px;
+    height: 40px;
+    text-align: left;
+}
+
+.cell .word-input {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    width: 80%;
+    color: black;
+}
+
+.cell input:focus {
+    outline: none;
+    color: black;
 }

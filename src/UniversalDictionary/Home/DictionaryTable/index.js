@@ -16,12 +16,35 @@ const fakeData = (langs) => {
 class DictionaryTable extends React.Component {
     constructor(props) {
         super(props);
+        // const { from, to, languages } = props;
+        // const data = fakeData(languages);
+        // const fromNames = from.map(l => l.nativeName);
+        // const fromCols = [];
+        // const toCols = [];
+        // Object.keys(data).forEach(key => {
+        //     let col = <DictionaryColumn colName={key} data={data[key]} onDelete={() => {
+        //         delete data[key];
+        //         this.setState({ data });
+        //     }
+        //     }/>;
+        //     if (key === to.nativeName) {
+        //         col = <DictionaryColumn colName={key} selected={true} setRef={this.toColumn} data={data[key]} />
+        //     }
+        //     if (fromNames.includes(key)) {
+        //         fromCols.push(col);
+        //     } else {
+        //         toCols.push(col);
+        //     }
+        // });
+        // this.state = { data, fromCols, toCols };
         this.state = { data: {}};
         this.toColumn = React.createRef();
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ data: fakeData(nextProps.languages)})
+        this.setState({ data: fakeData(nextProps.languages)});
+        // const { from } = nextProps;
+        // const { fromCols, toCols } = this.state;
     }
 
     render() {
@@ -37,7 +60,7 @@ class DictionaryTable extends React.Component {
             }
             }/>;
             if (key === to.nativeName) {
-                col = <DictionaryColumn colName={key} setRef={this.toColumn} data={data[key]} />
+                col = <DictionaryColumn colName={key} selected={true} setRef={this.toColumn} data={data[key]} />
             }
             if (fromNames.includes(key)) {
                 fromCols.push(col);
