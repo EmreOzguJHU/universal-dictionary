@@ -1,10 +1,10 @@
 import React from 'react';
 import Login from "./Login";
-import {UserContext} from "../../Context/UserContext";
+import {DictionaryContext} from "../../Context/DictionaryContext";
 import Language from  "./Login/Language";
 
 class LoginFlow extends React.Component {
-    static contextType = UserContext;
+    static contextType = DictionaryContext;
     constructor(props) {
         super(props);
         this.state = { user: { username: "" }, language: "", stage: 0};
@@ -20,7 +20,6 @@ class LoginFlow extends React.Component {
                 const {user} = this.state;
                 user.lang = val;
                 setUser(user);
-                localStorage.setItem('user', JSON.stringify(user));
             }}/>
         }
     }

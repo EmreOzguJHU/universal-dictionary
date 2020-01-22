@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import DictionaryTable from "./DictionaryTable";
 import './index.css'
 import apiConnect from "../../Helpers/apiConnect";
-import {UserContext} from "../../Context/UserContext";
+import {DictionaryContext} from "../../Context/DictionaryContext";
 
 const propsToCalls = {
     languages: 'https://restcountries.eu/rest/v2/all',
@@ -12,11 +12,13 @@ const propsToCalls = {
 const Home = ({ languages }) => {
     const [from, setFrom] = useState([]);
     const [search, setSearch] = useState("");
-    const {user: { lang} } = useContext(UserContext);
+    const {user: { lang }} = useContext(DictionaryContext);
+    const [to, setTo] = useState(lang);
+    const { langs } = useContext(DictionaryContext);
     return (
         <div className="homepage">
-            <NavBar choices={languages} from={from} setFrom={setFrom}/>
-            <DictionaryTable languages={languages} from={from} to={lang}/>
+            <NavBar choices={languages} from={from} setFrom={setFrom} setTo={setTo} setSearchWord={setSearch}/>
+            <DictionaryTable languages={languages} from={from} to={to} data={langs} search={search}/>
         </div>
     );
 };

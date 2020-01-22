@@ -4,10 +4,10 @@ import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
 import {homePagePath, profilePath} from "../../Consts/paths";
 import Home from "../Home";
 import Profile from "../Profile";
-import {UserContext} from "../../Context/UserContext";
+import {DictionaryContext} from "../../Context/DictionaryContext";
 
 const UDRouter = () => {
-    const {user} = useContext(UserContext);
+    const {user} = useContext(DictionaryContext);
     return (
         <Router>
             <div>

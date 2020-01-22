@@ -1,19 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './index.css';
 import DictionaryCell from "./DictionaryCell";
 import close from '../../../../Consts/close.svg';
 import edit from '../../../../Consts/edit.svg';
+import {DictionaryContext} from "../../../../Context/DictionaryContext";
 
 const DictionaryColumn = (props) => {
-    const {colName, data, setRef, onDelete, selected} = props;
-    const rows = data.map(d => <DictionaryCell edit={selected} data={d}/>);
+    const {colName, data, setRef, onDelete, selected, code} = props;
+    const { langs, setLangs } = useContext(DictionaryContext);
+    const concepts = Object.keys(langs[code]);
+    const rows = data.map((d, i) => <DictionaryCell edit={selected} data={d} onEdit={(word) => {
+        langs[code][concepts[i]] = [word];
+        setLangs(langs);
+    }
+    }/>);
     useEffect(() => {
         if (setRef) {
             window.scrollTo({ left: setRef.current.offsetLeft, behavior: 'smooth'})
         }
     }, []);
     return (
-        <tr className={"column" + (selected ? " selected" : "")} ref={setRef}>
+        <tr className={"column" + (selected ? " selected" : "")} ref={setRef} key={colName}>
             <td className="colHeader">
                 <div>
                     {colName}

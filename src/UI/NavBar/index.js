@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {profilePath} from "../../Consts/paths";
 import {Link} from "react-router-dom";
-import {UserContext} from "../../Context/UserContext";
+import {DictionaryContext} from "../../Context/DictionaryContext";
 import './index.css'
 import DropDown from "../Choose/DropDown";
 import CircleIcon from "../CircleIcon";
@@ -10,21 +10,22 @@ import arrow from "../../Consts/longarrow.png"
 import SearchBar from "../SearchBar";
 import avatar from "../../Consts/avatar.svg"
 
-const NavBar = ({ choices, from, setFrom }) => {
+const NavBar = ({ choices, from, setFrom, setTo, setSearchWord }) => {
     const [showDropDown, setShowDropDown] = useState(false);
-    const fromIcons = from.map((l) => (
-        <li>
-            <CircleIcon src={l.flag}/>
-        </li>
-    ));
-    const {user} = useContext(UserContext);
+    const [showTo, setShowTo] = useState(false);
+    // const fromIcons = from.map((l) => (
+    //     <li>
+    //         <CircleIcon src={l.flag}/>
+    //     </li>
+    // ));
+    const {user, langMap, setUser} = useContext(DictionaryContext);
     return (
         <div>
             <div className="navbar">
                 <ul className="items">
                     <li>
                         <ul className="froms">
-                            {fromIcons}
+                            {}
                         </ul>
                     </li>
                     <li>
@@ -34,10 +35,12 @@ const NavBar = ({ choices, from, setFrom }) => {
                         <img src={arrow} alt="arrow" className="arrow"/>
                     </li>
                     <li>
-                        <CircleIcon src={user.lang.flag}/>
+                        <div className="to" onClick={() => setShowTo(true)}>
+                            {langMap[user.lang]}
+                        </div>
                     </li>
                     <li className="search">
-                        <SearchBar/>
+                        <SearchBar setSearchWord={setSearchWord}/>
                     </li>
                     <li className="user">
                         {user.username}
@@ -50,11 +53,17 @@ const NavBar = ({ choices, from, setFrom }) => {
                 </ul>
             </div>
             {showDropDown &&
-            <DropDown list={choices} onClose={() => setShowDropDown(false)} onChange={(l) => {
+            <DropDown onClose={() => setShowDropDown(false)} onChange={(l) => {
                 const newFrom = from.slice();
                 newFrom.push(l);
                 setFrom(newFrom);
-            }}/>
+            }}/>}
+            {showTo &&
+                <DropDown name="to" onClose={() => setShowTo(false)} onChange={(l) => {
+                user.lang = l;
+                setUser(user);
+                setTo(l);
+            }}/>}
             }
         </div>
     )

@@ -3,13 +3,13 @@
     position: absolute;
     top: 10%;
     left: 0;
-    width: 100vw;
     display: inline-block;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 .tableWithScroll {
+    height: 100%;
     overflow-x: auto;
     white-space: nowrap;
     background-color: #ededed;

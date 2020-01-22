@@ -43,7 +43,7 @@
     background-color: #929190;
     cursor: pointer;
 }
-
+/*
 .dropdown img {
     width: 20%;
     height: 50%;
@@ -53,11 +53,11 @@
     position: absolute;
     transform: translate(0, -50%);
 }
-
+*/
 .dropdown .name {
     display: inline-block;
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
-    left: 30%;
+    left: 5%;
 }

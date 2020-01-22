@@ -14,5 +14,5 @@
 
 .cell input:focus {
     outline: none;
-    color: black;
+    color: orange;
 }

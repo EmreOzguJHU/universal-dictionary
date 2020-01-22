@@ -22,6 +22,7 @@
     display: inline;
     float: left;
     margin-right: 1%;
+    color: black;
 }
 
 .navbar .items .froms {
@@ -60,7 +61,19 @@
     color: black;
 }
 
+.navbar .to:hover {
+    background-color: #928f91;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .dropdown {
     position: fixed;
     top: 10%;
+}
+
+.dropdown.to {
+    position: fixed;
+    left: 20%;
+
 }

@@ -10,7 +10,7 @@ const Choose = (props) => {
             <div className="choose">
                 <img className="chooseimg" src={image} alt="choose" onClick={() => setShow(true)}/>
                 {show &&
-                <DropDown list={list} onChange={onChange} onClose={() => setShow(false)}/>
+                <DropDown onChange={onChange} onClose={() => setShow(false)}/>
                 }
             </div>
         </div>

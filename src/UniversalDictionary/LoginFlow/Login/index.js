@@ -45,8 +45,8 @@ class Login extends React.Component {
                         <img src={lock} alt="lock"/>
                         <Input
                             name="password"
-                            type="text"
-                            value={this.encode(user.password)}
+                            type="password"
+                            value={user.password}
                             onChange={this.handleInputChange}/>
                     </div>
                     <Button image={arrow}

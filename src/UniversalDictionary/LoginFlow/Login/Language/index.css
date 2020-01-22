@@ -8,8 +8,9 @@
 }
 
 .language .choice {
-    top: 20%;
+    top: 32%;
     position: absolute;
+    left: 40%;
 }
 
 .language .flagName {

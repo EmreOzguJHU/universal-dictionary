@@ -11,7 +11,7 @@ table tr td {
 
 .column {
     min-width: 0.5%;
-    max-width: 200px;
+    max-width: 250px;
     border: 2px solid #000000;
     border-left: hidden;
     border-bottom: hidden;
@@ -28,6 +28,7 @@ table tr td {
 .column .colHeader {
     border-bottom: 2px solid #000000;
     font-weight: bold;
+    text-transform: capitalize;
 }
 
 .column .colHeader img {
