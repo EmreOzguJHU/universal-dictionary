@@ -23,7 +23,12 @@ const DictionaryColumn = (props) => {
         <tr className={"column" + (selected ? " selected" : "")} ref={setRef} key={colName}>
             <td className="colHeader">
                 <div>
-                    {colName}
+                    <input
+                        className="header"
+                        name="data"
+                        type="text"
+                        value={colName}
+                        disabled="true"/>
                     {!selected ?
                         <img src={close} onClick={onDelete} alt="exit"/>
                         :

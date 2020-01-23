@@ -1,5 +1,5 @@
 import React from 'react';
-import Index from "../../../../UI/Button";
+import Index from "../Button";
 import './Popup.css';
 
 class Popup extends React.Component {

@@ -8,27 +8,6 @@ class DictionaryTable extends React.Component {
 
     constructor(props) {
         super(props);
-        // const { from, to, languages } = props;
-        // const data = fakeData(languages);
-        // const fromNames = from.map(l => l.nativeName);
-        // const fromCols = [];
-        // const toCols = [];
-        // Object.keys(data).forEach(key => {
-        //     let col = <DictionaryColumn colName={key} data={data[key]} onDelete={() => {
-        //         delete data[key];
-        //         this.setState({ data });
-        //     }
-        //     }/>;
-        //     if (key === to.nativeName) {
-        //         col = <DictionaryColumn colName={key} selected={true} setRef={this.toColumn} data={data[key]} />
-        //     }
-        //     if (fromNames.includes(key)) {
-        //         fromCols.push(col);
-        //     } else {
-        //         toCols.push(col);
-        //     }
-        // });
-        // this.state = { data, fromCols, toCols };
         const { from, to, data } = props;
         const langs = Object.keys(data);
         const idx = langs.indexOf(to);
@@ -46,44 +25,16 @@ class DictionaryTable extends React.Component {
         const concepts = data[to] ? Object.keys(data[to]) : [];
         for (let i = 0; i < concepts.length; i++) {
             const concept = concepts[i];
-            // let maxWords = 0;
-            // for (let j = 0; j < from.length; j++) {
-            //     if (data[from][concept].length > maxWords) {
-            //         maxWords = data[from][concept].length;
-            //     }
-            // }
-            // maxWords = maxWords || data[to][concept].length;
             for (let j = 0; j < targetLangs.length; j++) {
                 const lang = targetLangs[j];
                 if (!(lang in colWords)) {
                     colWords[lang] = [];
                 }
                 colWords[lang].push(data[lang][concept]);
-                // if (data[lang][concept].length < maxWords) {
-                //     colWords[lang].push(data[lang][concept].concat(Array(maxWords - data[lang][concept].length).fill(data[lang[concept[0]]])));
-                // } else {
-                //     colWords[lang].push(data[lang][concept].slice(0, maxWords));
-                // }
             }
         }
         return colWords;
     }
-
-
-    // componentDidMount() {
-    //     const data = {};
-    //     const seen = {};
-    //     tsv('swadesh.tsv', (row) => {
-    //         if (!(row.cod in data)) {
-    //             data[row.cod] = [];
-    //             seen[row.cod] = {};
-    //         }
-    //         if (data[row.cod].length < 100 && !seen[row.cod][row.con]) {
-    //             data[row.cod].push(row.wor);
-    //             seen[row.cod][row.con] = true;
-    //         }
-    //     }).then(() => this.setState({ data: data}));
-    // }
 
     findConcept(search) {
         const { from, toLangs, data } = this.state;
@@ -131,65 +82,6 @@ class DictionaryTable extends React.Component {
     }
 
     render() {
-        /*
-        const { from, to, languages } = this.props;
-        const { data } = this.state;
-        // const fromNames = from.map(l => l.nativeName);
-        const fromCols = [];
-        const toCols = [];
-        // Object.keys(data).forEach(key => {
-        //     let col = <DictionaryColumn colName={key} data={data[key]} onDelete={() => {
-        //         delete data[key];
-        //         this.setState({ data });
-        //     }
-        //     }/>;
-        //     if (key === to.nativeName) {
-        //         col = <DictionaryColumn colName={key} selected={true} setRef={this.toColumn} data={data[key]} />
-        //     }
-        //     if (fromNames.includes(key)) {
-        //         fromCols.push(col);
-        //     } else {
-        //         toCols.push(col);
-        //     }
-        // });
-        const seen = {};
-        from.forEach(country => {
-           if (country.languages) {
-               country.languages.forEach(lang => {
-                   if (data[lang.iso639_2]) {
-                       let col = <DictionaryColumn colName={lang.nativeName} data={data[lang.iso639_2].slice(52)} onDelete={() => {
-                           // delete data[key];
-                           // this.setState({data});
-                       }
-                       }/>;
-                       fromCols.push(col);
-                       seen[lang.iso639_2] = true;
-                   }
-               })
-           }
-        });
-        const toName = to.languages[0].nativeName;
-        languages.forEach(l => {
-           l.languages.forEach(lang => {
-               if (lang.name !== "English" && !seen[lang.iso639_2] && data[lang.iso639_2]) {
-                   let col = <DictionaryColumn colName={lang.nativeName} data={data[lang.iso639_2].slice(52)} onDelete={() => {
-                       delete data[lang.iso639_2];
-                       this.setState({data});
-                   }
-                   }/>;
-                   // if (lang.nativeName === toName) {
-                   //     col = <DictionaryColumn colName={lang.nativeName} selected={true} setRef={this.toColumn} data={data[lang.iso639_2]} />
-                   // }
-                   toCols.push(col);
-                   seen[lang.iso639_2] = true;
-               }
-           })
-        });
-        if ('tuq' in data) {
-            const col = <DictionaryColumn colName={"Tedaga"} selected={true} setRef={this.toColumn} data={data['tuq'].slice(52)}/>
-            toCols.splice(7, 0, col);
-        }
-         */
         const colWords = this.buildCols();
         const { from, to, toLangs } = this.state;
         const { langMap } = this.context;

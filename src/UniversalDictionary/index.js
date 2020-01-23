@@ -24,8 +24,8 @@ const UniversalDictionary = () => {
         if (!langs || Object.keys(langs).length === 0) {
             codes = {};
             langs = {};
-            tsv('iso.tsv', (row) => {
-               codes[row.Id] = row.Ref_Name;
+            tsv('autonyms.tsv', (row) => {
+               codes[row.tag3] = row.autonym || row.name;
             }).then(() => {
                 tsv('swadesh.tsv', (row) => {
                     if (!(row.cod in langs)) {
