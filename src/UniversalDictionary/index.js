@@ -21,7 +21,7 @@ const UniversalDictionary = () => {
         const storedUser = JSON.parse(localStorage.getItem('user'));
         let langs = JSON.parse(localStorage.getItem('langs'));
         let codes = JSON.parse(localStorage.getItem('codes'));
-        if (!langs || Object.keys(langs).length === 0) {
+        if (!codes || Object.keys(codes).length === 0 || !langs || Object.keys(langs).length === 0) {
             codes = {};
             langs = {};
             tsv('autonyms.tsv', (row) => {
@@ -56,7 +56,7 @@ const UniversalDictionary = () => {
     }, []);
     return (
         <DictionaryContext.Provider value={{user, setUser: setUserContext, name: "context", langs: data, setLangs: setDataContext, langMap}}>
-            <UDRouter/>
+            <UDRouter data={data && langMap ? null : ["Loading..."]}/>
         </DictionaryContext.Provider>
     )
 };

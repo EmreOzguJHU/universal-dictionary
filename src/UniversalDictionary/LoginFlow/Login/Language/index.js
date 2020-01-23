@@ -12,7 +12,7 @@ const propsToCalls = {
     languages: 'https://restcountries.eu/rest/v2/all',
 };
 
-const Language = ({languages, onClick}) => {
+const Language = ({languages, onClick, data}) => {
     const [lang, setLang] = useState();
     const { langMap } = useContext(DictionaryContext);
     return (
@@ -25,7 +25,7 @@ const Language = ({languages, onClick}) => {
                 </div>
             }
 
-            <Choose image={flag} onChange={(l) => setLang(l)}/>
+            <Choose data={data} image={flag} onChange={(l) => setLang(l)}/>
             <Button className="button" image={arrow} disabled={!lang} onClick={() => onClick(lang)}/>
         </div>
     );

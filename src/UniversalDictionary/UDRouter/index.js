@@ -6,12 +6,12 @@ import Home from "../Home";
 import Profile from "../Profile";
 import {DictionaryContext} from "../../Context/DictionaryContext";
 
-const UDRouter = () => {
+const UDRouter = ({ data }) => {
     const {user} = useContext(DictionaryContext);
     return (
         <Router>
             <div>
-                {user === null ? <LoginFlow/> :
+                {user === null ? <LoginFlow data={data}/> :
                     <Switch>
                         <Route exact path={homePagePath} component={Home}/>
                         <Route exact path={profilePath} component={Profile}/>

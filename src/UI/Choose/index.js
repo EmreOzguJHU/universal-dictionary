@@ -3,14 +3,14 @@ import DropDown from "./DropDown";
 import './index.css'
 
 const Choose = (props) => {
-    const {image, list, onChange} = props;
+    const {image, list, onChange, data} = props;
     const [show, setShow] = useState();
     return (
         <div>
             <div className="choose">
                 <img className="chooseimg" src={image} alt="choose" onClick={() => setShow(true)}/>
                 {show &&
-                <DropDown onChange={onChange} onClose={() => setShow(false)}/>
+                <DropDown data={data} onChange={onChange} onClose={() => setShow(false)}/>
                 }
             </div>
         </div>

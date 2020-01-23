@@ -14,7 +14,7 @@ class DictionaryTable extends React.Component {
         const start = idx - 3 < 0 ? 0 : idx - 3;
         const end = idx + 10 > langs.length ? langs.length : idx + 10;
         const toLangs = langs.slice(start, end);
-        this.state = { from, to, toLangs, data, fromCols: {}, toCols: {}, colWords: {} };
+        this.state = { from, to, toLangs, data, fromCols: {}, toCols: {}, colWords: {}, deleted: [] };
         this.toColumn = React.createRef();
     }
 
@@ -56,7 +56,7 @@ class DictionaryTable extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         const { from, to } = nextProps;
-        const { data } = this.state;
+        const { data, deleted } = this.state;
         const { search: oldSearch } = this.props;
         const { search } = nextProps;
         if (oldSearch !== search) {
@@ -74,7 +74,7 @@ class DictionaryTable extends React.Component {
         const toLangs = langs.slice(start, end);
         const newToLangs = [];
         for (let i = 0; i < toLangs.length; i++) {
-            if (from.indexOf(toLangs[i]) < 0) {
+            if (from.indexOf(toLangs[i]) < 0 && deleted.indexOf(toLangs[i]) < 0) {
                newToLangs.push(toLangs[i]);
            }
        }
@@ -83,7 +83,7 @@ class DictionaryTable extends React.Component {
 
     render() {
         const colWords = this.buildCols();
-        const { from, to, toLangs } = this.state;
+        const { from, to, toLangs, deleted } = this.state;
         const { langMap } = this.context;
         const fromCols = [];
         const toCols = [];
@@ -98,6 +98,7 @@ class DictionaryTable extends React.Component {
                 fromCols.push(col);
             } else {
                 col = <DictionaryColumn colName={langMap[lang]} data={colWords[lang]} code={lang} selected={lang === to} onDelete={() => {
+                    deleted.push(lang);
                     toLangs.splice(toLangs.indexOf(lang), 1);
                     this.setState({ toLangs });
                 }
